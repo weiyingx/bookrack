@@ -1,0 +1,36 @@
+body {
+  background-color: rgb(252,235,182);
+  color: rgb(94,65,47);
+  text-align: center;
+}
+
+.booksDisplay {
+  width: 800px;
+  border: 1px solid black;
+  border-radius: 1em;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  font-size: 15px;
+  display: inline-block;
+}
+
+.cover {
+  width: 190px;
+  margin-top: 10px;
+  /*border: 1px solid blue;*/
+  float: left;
+}
+
+.bookCover {
+  height: 220px;
+  width: 160px;
+  /*border: 1px solid red;*/
+}
+
+.bookDescription {
+  width: 550px;
+  /*border:1px solid green;*/
+  float: left;
+  text-align: left;
+}
