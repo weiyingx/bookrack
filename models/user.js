@@ -40,6 +40,7 @@ module.exports = function(sequelize, DataTypes) {
 },
     classMethods: {
       associate: function(models) {
+        models.user.belongsToMany(models.books, {through: "usersbooks"})
       }
     },
     instanceMethods: {
