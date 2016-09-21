@@ -31,6 +31,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+
 app.get('/', function(req, res) {
   res.render('index');
 });
@@ -39,19 +40,42 @@ app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
-app.get('/profile', function(req, res) {
-  res.render('profile');
-});
+
 
 app.get('/library', isLoggedIn, function(req, res) {
     db.books.findAll().then(function(books) {
-      console.log(books);
       res.render('library', {
         title: 'Express',
         books: books
       });
     });
   });
+
+// function search(event) {
+//   event.preventDefault();
+//
+//   clearSearchResults();
+//   $('#results').text("wait ah..");
+//
+//   $.get('http://carparks-sg.herokuapp.com/api', function(data) {
+//     clearSearchResults();
+//     for (var i = 0; i < data.length; i++) {
+//       console.log(data[i]);
+//       addSearchResult(data[i].Development, data[i].Lots);
+//     }
+//   });
+// }
+//
+//   // Clear previous search results.
+//   function clearSearchResults() {
+//     $("#results").empty();
+//   }
+//
+//   // adds a single search result to the page.
+//   function addSearchResult(result, lots) {
+//     $("#results").append($("<li>").append(result + ' has ' + lots + ' lot(s).'));
+//   }
+
 
 app.use('/auth', require('./controllers/auth'));
 

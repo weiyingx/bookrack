@@ -2,6 +2,12 @@ body {
   background-color: rgb(252,235,182);
   color: rgb(94,65,47);
   text-align: center;
+  background-image: url("img/wood.jpg");
+}
+
+.navbar-default {
+  background-color: rgb(252,235,182);
+  border-color: rgb(252,235,182)
 }
 
 .booksDisplay {
@@ -10,7 +16,8 @@ body {
   border-radius: 1em;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: white;
+  background-color: rgb(240,168,48);
+  border-color: rgb(240,168,48);
   font-size: 15px;
   display: inline-block;
 }
@@ -25,12 +32,46 @@ body {
 .bookCover {
   height: 220px;
   width: 160px;
+  border-radius: 0.5em;
   /*border: 1px solid red;*/
 }
 
 .bookDescription {
   width: 550px;
+  margin-top: 5px;
   /*border:1px solid green;*/
   float: left;
   text-align: left;
+}
+
+.locateBook {
+  background-color: rgb(120,192,168);
+  border-color: rgb(120,192,168);
+}
+
+.locateBook:hover {
+  background-color: rgb(149,219,208);
+  border-color: rgb(149,219,208);
+}
+
+.addToProfile {
+  margin-top: 5px;
+  background-color: rgb(120,192,168);
+  border-color: rgb(120,192,168);
+}
+
+.addToProfile:hover {
+  background-color: rgb(149,219,208);
+  border-color: rgb(149,219,208);
+}
+
+.randomButton {
+  margin-top: 5px;
+  background-color: rgb(120,192,168);
+  border-color: rgb(120,192,168);
+}
+
+.randomButton:hover {
+  background-color: rgb(149,219,208);
+  border-color: rgb(149,219,208);
 }

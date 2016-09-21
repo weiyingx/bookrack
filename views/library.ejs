@@ -15,8 +15,6 @@
     </form>
   </div>
 
-
-
 <div class="col-md-8">
 <div>
   <% for (var i = 0; i < books.length; i++) { %>
@@ -32,11 +30,15 @@
     <p><strong>Genre:</strong> <%= book.genre %></p>
     </div>
     <form action="<%= book.link %>" method="get" target="_blank">
-      <button class="btn btn-default" type="submit">Locate this book!</button>
+      <button class="btn btn-default locateBook" type="submit">Locate this book!</button>
     </form>
-    <div class="btn-group" role="group">
-    <a href="#" class="btn btn-default">Add to Rack</a>
-    </div>
+
+    <form class="dbResult" action="/profile" method="post">
+      <input type="hidden" name="title" value="book.title">
+      <button class="btn btn-default addToProfile" type="submit"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Rack</button>
+    </form>
+
+
   </div>
   <% } %>
 </div>
