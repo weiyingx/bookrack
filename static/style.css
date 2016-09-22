@@ -75,3 +75,19 @@ body {
   background-color: rgb(149,219,208);
   border-color: rgb(149,219,208);
 }
+
+#results {
+  margin-top: 20px;
+}
+
+.searchButton {
+  margin-bottom: 20px;
+  background-color: rgb(120,192,168);
+  border-color: rgb(120,192,168);
+}
+
+.searchButton:hover {
+  margin-bottom: 20px;
+  background-color: rgb(149,219,208);
+  border-color: rgb(149,219,208);
+}

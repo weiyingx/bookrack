@@ -5,17 +5,7 @@
 
 <div class="row">
 
-  <div class="col-md-4">
-    <form action="#" class="form-inline">
-      <div class="form-group">
-        <label class="sr-only" for="exampleInputEmail3">Science-Fiction</label>
-        <input type="search" class="form-control" id="bookSearch" placeholder="Science Fiction">
-      </div>
-      <button type="submit" class="btn btn-default">search books</button>
-    </form>
-  </div>
-
-<div class="col-md-8">
+<div class="col-md-12">
 <div>
   <% for (var i = 0; i < books.length; i++) { %>
   <% var book = books[i]; %>
@@ -30,11 +20,11 @@
     <p><strong>Genre:</strong> <%= book.genre %></p>
     </div>
     <form action="<%= book.link %>" method="get" target="_blank">
-      <button class="btn btn-default locateBook" type="submit">Locate this book!</button>
+      <button class="btn btn-default locateBook" type="submit">Get this book!</button>
     </form>
 
-    <form class="dbResult" action="/profile" method="post">
-      <input type="hidden" name="title" value="book.title">
+    <form id="favouriteList" action="/favourites" method="POST">
+      <input type="hidden" name="bookList" value="<%= book.title %>">
       <button class="btn btn-default addToProfile" type="submit"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Rack</button>
     </form>
 

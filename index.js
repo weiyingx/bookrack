@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/static'))
 
+
 app.use(require('morgan')('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,10 +38,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
+  res.render('profile', {books: null});
 });
-
-
 
 app.get('/library', isLoggedIn, function(req, res) {
     db.books.findAll().then(function(books) {
@@ -51,33 +50,43 @@ app.get('/library', isLoggedIn, function(req, res) {
     });
   });
 
-// function search(event) {
-//   event.preventDefault();
-//
-//   clearSearchResults();
-//   $('#results').text("wait ah..");
-//
-//   $.get('http://carparks-sg.herokuapp.com/api', function(data) {
-//     clearSearchResults();
-//     for (var i = 0; i < data.length; i++) {
-//       console.log(data[i]);
-//       addSearchResult(data[i].Development, data[i].Lots);
-//     }
-//   });
-// }
-//
-//   // Clear previous search results.
-//   function clearSearchResults() {
-//     $("#results").empty();
-//   }
-//
-//   // adds a single search result to the page.
-//   function addSearchResult(result, lots) {
-//     $("#results").append($("<li>").append(result + ' has ' + lots + ' lot(s).'));
-//   }
+  app.get('/genre', isLoggedIn, function(req, res) {
+    res.render('genre',{books: null});
+  });
 
+app.post('/search', isLoggedIn, function(req, res) {
+  // console.log(">>>>>>>>>>>>>",req.body.genreSelect)
+  db.books.findAll({
+    where: {
+    genre: req.body.genreSelect
+  }
+}).then(function(books) {
+  console.log(books);
+  res.render('genre', {
+    title: 'Express',
+    books: books
+  });
+});
+});
+
+app.post('/favourites', isLoggedIn, function(req, res) {
+  // console.log(">>>>>>>>>>>>>",req.body.genreSelect)
+  db.books.findAll({
+    where: {
+    title: req.u.bookList
+  }
+}).then(function(books) {
+  console.log(books);
+  res.render('profile', {
+    title: 'Express',
+    books: books
+  });
+});
+});
 
 app.use('/auth', require('./controllers/auth'));
+
+
 
 var server = app.listen(process.env.PORT || 3000);
 

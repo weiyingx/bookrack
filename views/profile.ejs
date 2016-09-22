@@ -2,6 +2,28 @@
 
 <div class="btn-group" role="group">
 <a href="/library" class="btn btn-default randomButton">Add Books</a>
+
+<div>
+  <% if(books) { %>
+  <% for (var i = 0; i < books.length; i++) { %>
+  <% var book = books[i]; %>
+  <div class="booksDisplay">
+    <div class="cover">
+      <img class="bookCover" src="<%=book.image %>">
+    </div>
+    <div class="bookDescription">
+    <p><strong>Title:</strong> <em><%= book.title %></em></p>
+    <p><strong>Author:</strong> <%= book.author %></p>
+    <p><strong>Description:</strong> <%= book.description %></p>
+    <p><strong>Genre:</strong> <%= book.genre %></p>
+    </div>
+    <form action="<%= book.link %>" method="get" target="_blank">
+      <button class="btn btn-default locateBook" type="submit">Get this book!</button>
+    </form>
+
+  </div>
+  <% } %>
+  <% } %>
 </div>
 
 
