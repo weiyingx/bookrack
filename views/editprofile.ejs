@@ -1,0 +1,15 @@
+<h2>Edit Your Profile</h2>
+
+<div>
+  <form method="POST" action="/editprofile?_method=PUT">
+    <div>
+      Name: <input type="text" name="name" value="<%= currentUser.name %>">
+    </div>
+    <div>
+      E-mail: <input type="text" name="email" value="<%= currentUser.email %>">
+    </div>
+
+    <button type="submit">save changes</button>
+  </form>
+
+</div>

@@ -102,17 +102,31 @@ app.post('/favourites', isLoggedIn, function(req, res) {
   });
 });
 
-
 app.delete("/deleteBook", function(req, res) {
-  console.log("deleting book")
-  console.log(req.body.bookId)
   db.favourite.destroy({
     where: {
       id: req.body.bookId
     }
   }).then(function(books) {
     res.redirect('/profile')
+  });
+});
 
+app.get('/editprofile', function(req, res) {
+  res.render('editprofile');
+});
+
+app.put('/editprofile', function(req, res) {
+  console.log(req.body)
+  db.user.update({
+    name: req.body.name,
+    email: req.body.email
+  }, {
+    where: {
+      id: req.session.passport.user
+    }
+  }).then(function(user) {
+    res.redirect('/profile');
   });
 });
 
