@@ -1,7 +1,13 @@
+<div id="name">
+<p><em>Hello, <%= currentUser.name %>!</em></p>
+</div>
+
+
 <h2>My Rack</h2>
 
 <div class="btn-group" role="group">
 <a href="/library" class="btn btn-default randomButton">Add Books</a>
+</div>
 
 <div>
   <% if(books) { %>
@@ -19,6 +25,10 @@
     </div>
     <form action="<%= book.link %>" method="get" target="_blank">
       <button class="btn btn-default locateBook" type="submit">Get this book!</button>
+    </form>
+    <form action="/deleteBook?_method=DELETE" method="POST">
+      <input type="hidden" name="bookId" value="<%= book.id %>">
+      <button class="btn btn-default addToProfile" type="submit">Delete Book</button>
     </form>
 
   </div>

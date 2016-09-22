@@ -91,3 +91,9 @@ body {
   background-color: rgb(149,219,208);
   border-color: rgb(149,219,208);
 }
+
+#name {
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 30px;
+}

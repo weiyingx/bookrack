@@ -35,6 +35,11 @@
         <form action="<%= book.link %>" method="get" target="_blank">
           <button class="btn btn-default locateBook" type="submit">Get this book!</button>
         </form>
+        
+        <form id="favouriteList" action="/favourites" method="POST">
+          <input type="hidden" name="bookId" value="<%= book.id %>">
+          <button class="btn btn-default addToProfile" type="submit"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Rack</button>
+        </form>
       </div>
     </div>
   <% } %>

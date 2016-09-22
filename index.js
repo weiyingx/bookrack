@@ -7,7 +7,9 @@ var flash = require('connect-flash');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var db = require("./models");
 var app = express();
-// var methodOverride = require('method-override')
+var methodOverride = require('method-override')
+
+app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs');
 
@@ -37,51 +39,81 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile', {books: null});
-});
 
-app.get('/library', isLoggedIn, function(req, res) {
-    db.books.findAll().then(function(books) {
-      res.render('library', {
-        title: 'Express',
+app.get('/profile', isLoggedIn, function(req, res) {
+  db.user.find({
+    where: req.session.passport.user
+  }).then(function(user) {
+    db.favourite.findAll( {
+      where: {
+        userid: req.user.id
+      }
+    }).then(function(books) {
+      res.render('profile', {
+        user: user,
         books: books
       });
     });
   });
+});
 
-  app.get('/genre', isLoggedIn, function(req, res) {
-    res.render('genre',{books: null});
-  });
-
-app.post('/search', isLoggedIn, function(req, res) {
-  // console.log(">>>>>>>>>>>>>",req.body.genreSelect)
-  db.books.findAll({
-    where: {
-    genre: req.body.genreSelect
-  }
-}).then(function(books) {
-  console.log(books);
-  res.render('genre', {
-    title: 'Express',
-    books: books
+app.get('/library', isLoggedIn, function(req, res) {
+  db.books.findAll().then(function(books) {
+    res.render('library', {
+      title: 'Express',
+      books: books
+    });
   });
 });
+
+app.get('/genre', isLoggedIn, function(req, res) {
+  res.render('genre',{books: null});
+});
+
+app.post('/search', isLoggedIn, function(req, res) {
+  db.books.findAll({
+    where: {
+      genre: req.body.genreSelect
+    }
+  }).then(function(books) {
+    console.log(books);
+    res.render('genre', {
+      title: 'Express',
+      books: books
+    });
+  });
 });
 
 app.post('/favourites', isLoggedIn, function(req, res) {
-  // console.log(">>>>>>>>>>>>>",req.body.genreSelect)
-  db.books.findAll({
-    where: {
-    title: req.u.bookList
-  }
-}).then(function(books) {
-  console.log(books);
-  res.render('profile', {
-    title: 'Express',
-    books: books
+  db.favourite.create({
+      userid: req.user.id,
+      bookid: req.body.bookId
+  }).then(function(books) {
+    console.log(books);
+    db.favourite.findAll( {
+      where: {
+        userid: req.user.id
+      }
+    }).then(function(books) {
+      res.render('profile', {
+        books: books
+      });
+    });
   });
 });
+
+
+app.delete("/deleteBook", function(req, res) {
+  console.log("deleting book")
+  console.log(req.body.bookId)
+  db.favourite.destroy({
+    where: {
+      id: req.body.bookId
+    }
+  }).then(function(books) {
+    res.redirect('/profile')
+
+  });
 });
 
 app.use('/auth', require('./controllers/auth'));
