@@ -10,7 +10,7 @@
         <select name="genreSelect" class="form-control" id="sel1">
           <option value="Science Fiction">Science Fiction</option>
           <option value="Paranormal">Paranormal</option>
-          <option value="Fantasy">Mystery</option>
+          <option value="Mystery">Mystery</option>
           <option value="Fantasy">Fantasy</option>
           <option value="Realistic Fiction">Realistic Fiction</option>
         </select>
@@ -35,7 +35,7 @@
         <form action="<%= book.link %>" method="get" target="_blank">
           <button class="btn btn-default locateBook" type="submit">Get this book!</button>
         </form>
-        
+
         <form id="favouriteList" action="/favourites" method="POST">
           <input type="hidden" name="bookId" value="<%= book.id %>">
           <button class="btn btn-default addToProfile" type="submit"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Rack</button>
